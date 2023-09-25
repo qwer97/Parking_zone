@@ -1,4 +1,4 @@
-package Industryacademic.project.backend;
+package Industryacademic.project.backend.Controller;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
