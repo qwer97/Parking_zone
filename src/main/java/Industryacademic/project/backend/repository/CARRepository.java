@@ -1,6 +1,6 @@
 package Industryacademic.project.backend.repository;
 
-import Industryacademic.project.backend.CAR;
+import Industryacademic.project.backend.Entity.CAR;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

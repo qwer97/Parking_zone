@@ -1,6 +1,5 @@
-package Industryacademic.project.backend;
+package Industryacademic.project.backend.Entity;
 
-import Industryacademic.project.backend.STUDENT;
 import jakarta.persistence.*;
 
 @Entity
@@ -8,6 +7,13 @@ import jakarta.persistence.*;
 public class CAR {
     @Id
     private String Cno;
+
+    public String getCno() {
+        return Cno;
+    }
+    public void setCno(String cno) {
+        Cno = cno;
+    }
     @ManyToOne
     @JoinColumn(name="Sno")
     private STUDENT s; //Sno Foreignkey 선언

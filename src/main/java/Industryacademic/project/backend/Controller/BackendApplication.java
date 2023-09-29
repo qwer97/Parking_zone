@@ -2,11 +2,15 @@ package Industryacademic.project.backend.Controller;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @ComponentScan({"industryacademic.project.backend.Service"})
-
+//ComponentScan({"industryacademic.project.backend"})
+@EnableJpaRepositories(basePackages = {"industryacademic.project.backend.repository"})
+@EntityScan(basePackages = {"industryacademic.project.backend..Entity"}) // com.my.jpa.entity 하위에 있는 @Entity 클래스 scan
 public class BackendApplication {
 
 	public static void main(String[] args) {
