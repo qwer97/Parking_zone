@@ -12,14 +12,15 @@ import java.sql.Timestamp; // java.sql.Timestamp를 사용합니다.
 public class PARKING_LOT {
     @Getter
     @Id
-    private String Cno;
+    @Column(name = "Cno")
+    private String cno;
 
-    public String getCno() {
-        return Cno;
+    public String getcno() {
+        return cno;
     }
 
-    public void setCno(String cno) {
-        Cno = cno;
+    public void setcno(String cno) {
+        cno = cno;
     }
 
 

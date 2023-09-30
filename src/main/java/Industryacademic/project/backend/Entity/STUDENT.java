@@ -23,7 +23,9 @@ public class STUDENT {
     @Setter
     private String pno;
 
-    @Getter
-    @Setter
+
     private String parkingTicket;
+    public void updateParkingTicket(String newTicketType) {
+        this.parkingTicket = newTicketType;
+    }
 }

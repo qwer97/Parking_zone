@@ -13,7 +13,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EntityScan(basePackages = {"industryacademic.project.backend..Entity"}) // com.my.jpa.entity 하위에 있는 @Entity 클래스 scan
 public class BackendApplication {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) {//컨트롤러 추가해야함...
 
 		SpringApplication.run(BackendApplication.class, args);
 	}

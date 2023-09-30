@@ -23,7 +23,7 @@ public class ParkingEntryServiceTest {
         String Cno = "곽9999";
         PARKING_LOT PL= new PARKING_LOT();
 
-        PL.setCno(Cno);
+        PL.setcno(Cno);
         p.saveParkingEntry(Cno);
 
     }

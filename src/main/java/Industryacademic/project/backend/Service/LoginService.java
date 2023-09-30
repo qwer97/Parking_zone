@@ -14,9 +14,12 @@ public class LoginService { // 로그인 구현 , 추후에 spring security?
     }
 
     public boolean login(int Sno, String password){
+
         STUDENT s =R.findBySnoAndPassword(Sno,password);
 
         return s!=null;
     }
+
+
 
 }
