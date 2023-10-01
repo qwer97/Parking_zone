@@ -13,6 +13,7 @@ public class BuyTicketService {
     @Autowired BuyTicketService (STUDENTRepository S){
         this.S =S;
     }
+
     public void BuyTicket(int sno,String password,String Ticket){
         STUDENT s =S.findBySnoAndPassword(sno,password);
         s.updateParkingTicket(Ticket);

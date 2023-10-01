@@ -13,6 +13,7 @@ public class PARKING_LOT {
     @Getter
     @Id
     @Column(name = "Cno")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String cno;
 
     public String getcno() {
@@ -43,5 +44,6 @@ public class PARKING_LOT {
     private Timestamp exitTime;
 
     // Getter와 Setter 메서드 추가
+
 }
 

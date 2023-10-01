@@ -24,6 +24,7 @@ public class ParkingEntryService {
 
         entry.setcno(Cno);
         entry.setEntryTime(Timestamp.valueOf(enter_time));
+
         p.save(entry); //jpa 내부 기능으로 insert등이 자동으로 된다.
     }
 

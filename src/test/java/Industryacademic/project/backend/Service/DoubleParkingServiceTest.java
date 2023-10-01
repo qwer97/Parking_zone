@@ -30,6 +30,16 @@ public class DoubleParkingServiceTest {
     @MockBean
     private PARKING_LOTRepository p;
 
+
+    @Test
+    public void testDoublingEntry(){
+
+        String Cno ="QWERTT";
+        String class_info ="금 9~12";
+        L.DoubleParking_Entry(Cno,class_info);
+
+    }
+
     @Test
     public void testDoubleParkingCheck(){
         String Cno ="마8888";

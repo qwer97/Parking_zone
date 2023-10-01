@@ -18,15 +18,20 @@ public class CAR {
     @ManyToOne
     @JoinColumn(name="Sno")
     private STUDENT s; //Sno Foreignkey 선언
-    private String Class_info;
+    @Column(name = "class_info")
+    private String class_info;
     public String getClass_info() {
-        return Class_info;
+        return class_info;
     }
     public void setClass_info(String class_info) {
-        Class_info = class_info;
+        this.class_info = class_info;
     }
-
+    @Column(name = "Double_parking")
     private char Double_parking;
+
+    public void updateClass_info(String newClass_info) {
+        this.class_info = newClass_info;
+    }
 
 }
 
