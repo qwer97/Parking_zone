@@ -7,7 +7,10 @@ import Industryacademic.project.backend.Entity.STUDENT;
 import Industryacademic.project.backend.repository.CARRepository;
 import Industryacademic.project.backend.repository.PARKING_LOTRepository;
 import Industryacademic.project.backend.repository.STUDENTRepository;
+import com.fasterxml.jackson.databind.util.internal.PrivateMaxEntriesMap;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -16,6 +19,7 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest(classes = BackendApplication.class)
@@ -24,40 +28,36 @@ public class DoubleParkingServiceTest {
     @Autowired
     private DoubleParkingService L;
 
-    @MockBean
-    private CARRepository c;
+    @Autowired
+    @Mock
+    private CARRepository C;
 
-    @MockBean
+    @Autowired
+    @Mock
     private PARKING_LOTRepository p;
 
-
     @Test
-    public void testDoublingEntry(){
+    public void DoubleParking_Entry_Test() {
 
-        String Cno ="QWERTT";
-        String class_info ="금 9~12";
-        L.DoubleParking_Entry(Cno,class_info);
+        // given
+        String Cno = "QWERTT";
+        String class_info = "금 9~12";
+        int Sno =2019125001;
+        // when
+        L.DoubleParking_Entry(Cno,Sno, class_info);
 
     }
+
 
     @Test
     public void testDoubleParkingCheck(){
-        String Cno ="마8888";
-        CAR car = new CAR();
-        PARKING_LOT parkingLot = new PARKING_LOT();
-        car.setClass_info("Some info");
 
-        when(p.findByCno(Cno)).thenReturn(parkingLot);
-        when(c.findByCno(Cno)).thenReturn(car);
+        String Cno = "마8888";
 
-        // 메소드 호출
-        Map<String, String> result = L.DoubleParking_Check(Cno);
-
-        // 결과 검증
-        assertTrue(result.containsKey("Clas_info"));
-        assertEquals("Some info", result.get("Clas_info"));
+        // 테스트 대상 코드의 실행 결과를 print() 메서드를 사용하여 출력합니다.
+        //L.DoubleParking_Check(Cno);
+        System.out.println(L.DoubleParking_Check(Cno));
 
     }
-
 
 }

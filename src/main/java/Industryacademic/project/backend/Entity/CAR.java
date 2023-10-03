@@ -31,6 +31,7 @@ public class CAR {
     @Setter
     private char Double_parking;
 
+
     public void updateClass_info(String newClass_info) {
         this.class_info = newClass_info;
     }

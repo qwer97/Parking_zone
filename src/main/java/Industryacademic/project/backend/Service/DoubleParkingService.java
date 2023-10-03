@@ -22,18 +22,17 @@ public class DoubleParkingService { //이중주차 등록과 이중주차 조회
         this.P =P;
         this.C = car;
     }
-    public void DoubleParking_Entry(String Cno, String class_info) {//이중주차 할 때 수업정보 입력
+    @Transactional
+    public void DoubleParking_Entry(String Cno, int Sno,String class_info) {//이중주차 할 때 수업정보 입력
 
-            PARKING_LOT p = new PARKING_LOT();
-            CAR c = new CAR();
+        PARKING_LOT p =P.findByCno(Cno);//자동구현됨
+        CAR c = C.findByCno(Cno);
 
-            c.setCno(Cno);
-            c.updateClass_info(class_info);
-
-            C.save(c);
+        c.updateClass_info(class_info);
+        c.setDouble_parking('Y');
+        C.save(c);
 
     }
-
     public Map<String, String> DoubleParking_Check(String Cno){ // 이중주차 차주에게 연락하기 위해
 
         Map<String, String> result = new HashMap<>();

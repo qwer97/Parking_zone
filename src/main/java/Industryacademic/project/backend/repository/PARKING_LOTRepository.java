@@ -5,7 +5,7 @@ import Industryacademic.project.backend.Entity.PARKING_LOT;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-public interface PARKING_LOTRepository extends JpaRepository<PARKING_LOT,Long> {
+public interface PARKING_LOTRepository extends JpaRepository<PARKING_LOT,String> {
     PARKING_LOT findByCno(String Cno);
 
 }

@@ -20,21 +20,20 @@ class RegisterCarServiceTest {
     private STUDENTRepository s;
 
     @Autowired
-    private RegistCarService registerCarService;
+    private RegistCarService r;
 
     @Test
-    void registerCar_studentExist_carRegistered() {
+    void registerCar_test() {
         // given
         int sno = 2019125003;
-        String cno = "12345";
+        String cno = "12365";
 
         STUDENT student = new STUDENT();
         student.setSno(sno);
         CAR C = new CAR();
         C.setCno(cno);
         C.setS(student);
-        c.save(C);
 
-
+        r.registerCar(cno, sno);
     }
 }
