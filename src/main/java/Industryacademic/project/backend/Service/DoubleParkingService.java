@@ -27,11 +27,10 @@ public class DoubleParkingService { //이중주차 등록과 이중주차 조회
             PARKING_LOT p = new PARKING_LOT();
             CAR c = new CAR();
 
-            c.setcno(Cno);
-            c.setClass_info(class_info);
+            c.setCno(Cno);
+            c.updateClass_info(class_info);
 
             C.save(c);
-
 
     }
 
