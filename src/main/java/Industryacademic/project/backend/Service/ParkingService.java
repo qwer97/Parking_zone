@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
@@ -30,6 +31,16 @@ public class ParkingService {
         parkingLot.setEntryTime(current);
 
         P.save(parkingLot);
+    }
+    @Transactional
+    public void Existing(String cno){
+        Timestamp current = Timestamp.valueOf(LocalDateTime.now());
+        PARKING_LOT park = P.findByCno(cno);
+
+        park.setExitTime(current);
+        P.save(park);
+
+
     }
 
 

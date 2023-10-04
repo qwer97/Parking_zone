@@ -29,5 +29,11 @@ public class ParkingServiceTest {
         L.Parking(cno);
 
     }
-
+    @Test
+    public void TestExisting(){
+        String cno = "김3333";
+        PARKING_LOT p = new PARKING_LOT();
+        p.setCno(cno);
+        L.Existing(cno);
+    }
 }
