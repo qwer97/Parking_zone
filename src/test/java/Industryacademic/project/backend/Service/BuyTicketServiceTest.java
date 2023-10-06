@@ -12,9 +12,9 @@ public class BuyTicketServiceTest {
 
     @Test
     public void testBuy(){
-        int Sno =2019125001;
-        String password ="QWE";
-        String Pno ="010-3333-4444";
+        int Sno =2019123002;
+        String password ="zzgg";
+        String pno = "010-2345-3667";
         String newTicket ="ST";
 
         // BuyTicketService의 BuyTicket 메서드 호출
