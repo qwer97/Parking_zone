@@ -1,7 +1,7 @@
 package Industryacademic.project.backend.Service;
 
 
-import Industryacademic.project.backend.Controller.BackendApplication;
+import Industryacademic.project.backend.BackendApplication;
 import Industryacademic.project.backend.Entity.STUDENT;
 import Industryacademic.project.backend.repository.STUDENTRepository;
 import org.junit.jupiter.api.Test;

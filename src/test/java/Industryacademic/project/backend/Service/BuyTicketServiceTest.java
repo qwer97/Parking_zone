@@ -1,6 +1,6 @@
 package Industryacademic.project.backend.Service;
 
-import Industryacademic.project.backend.Controller.BackendApplication;
+import Industryacademic.project.backend.BackendApplication;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

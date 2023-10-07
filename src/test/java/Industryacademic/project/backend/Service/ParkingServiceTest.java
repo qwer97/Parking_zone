@@ -1,15 +1,11 @@
 package Industryacademic.project.backend.Service;
 
-import Industryacademic.project.backend.Controller.BackendApplication;
+import Industryacademic.project.backend.BackendApplication;
 import Industryacademic.project.backend.Entity.PARKING_LOT;
 import Industryacademic.project.backend.repository.PARKING_LOTRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
 
 @SpringBootTest(classes = BackendApplication.class)
 public class ParkingServiceTest {
