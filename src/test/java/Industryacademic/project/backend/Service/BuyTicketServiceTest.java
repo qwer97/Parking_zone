@@ -15,7 +15,7 @@ public class BuyTicketServiceTest {
         int Sno =2019123002;
         String password ="zzgg";
         String pno = "010-2345-3667";
-        String newTicket ="ST";
+        String newTicket ="4";
 
         // BuyTicketService의 BuyTicket 메서드 호출
         bt.BuyTicket(Sno, password, newTicket);
