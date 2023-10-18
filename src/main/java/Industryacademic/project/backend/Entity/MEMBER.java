@@ -8,12 +8,12 @@ import lombok.Setter;
 
 
 @Entity
-@Table(name="STUDENT")
-public class STUDENT {
+@Table(name="MEMBER")
+public class MEMBER {
     @Id
     @Getter
     @Setter
-    private int sno;  // primary key 선언
+    private int mno;  // primary key 선언
 
     @Getter
     @Setter

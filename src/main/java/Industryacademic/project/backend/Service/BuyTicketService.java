@@ -1,24 +1,24 @@
 package Industryacademic.project.backend.Service;
 
 
-import Industryacademic.project.backend.Entity.STUDENT;
-import Industryacademic.project.backend.repository.STUDENTRepository;
+import Industryacademic.project.backend.Entity.MEMBER;
+import Industryacademic.project.backend.repository.MEMBERRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class BuyTicketService {
 
-    private final STUDENTRepository S;
+    private final MEMBERRepository M;
 
-    @Autowired BuyTicketService (STUDENTRepository S){
-        this.S =S;
+    @Autowired BuyTicketService (MEMBERRepository M){
+        this.M =M;
     }
 
-    public void BuyTicket(int sno,String password,String Ticket){
-        STUDENT s =S.findBySnoAndPassword(sno,password);
-        s.updateParkingTicket(Ticket);
-        S.save(s); //업데이트 기능도 동시에 수행한다. db에 존재한다면
+    public void BuyTicket(int mno,String password,String Ticket){
+        MEMBER m =M.findByMnoAndPassword(mno,password);
+        m.updateParkingTicket(Ticket);
+        M.save(m); //업데이트 기능도 동시에 수행한다. db에 존재한다면
     }
 
 

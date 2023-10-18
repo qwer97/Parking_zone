@@ -2,8 +2,8 @@ package Industryacademic.project.backend.Service;
 
 
 import Industryacademic.project.backend.BackendApplication;
-import Industryacademic.project.backend.Entity.STUDENT;
-import Industryacademic.project.backend.repository.STUDENTRepository;
+import Industryacademic.project.backend.Entity.MEMBER;
+import Industryacademic.project.backend.repository.MEMBERRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,22 +12,22 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class RegistStudentTest {
 
     @Autowired
-    RegistStudentService R;
+    RegistMEMBERService R;
 
     @Autowired
-    STUDENTRepository S;
+    MEMBERRepository S;
 
     @Test
     public void RegistTest(){ //test에서는 no parameter
-        STUDENT s = new STUDENT();
-        int sno = 2019123002;
+        MEMBER s = new MEMBER();
+        int mno = 2019123002;
         String password ="zzgg";
         String pno = "010-2345-3667";
 
-        s.setSno(sno);
+        s.setMno(mno);
         s.setPassword(password);
         s.setPno(pno);
 
-        R.StudentRegistration(sno,password,pno);
+        R.MEMBERRegistration(mno,password,pno);
     }
 }

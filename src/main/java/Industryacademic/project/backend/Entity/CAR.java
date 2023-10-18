@@ -19,7 +19,7 @@ public class CAR {
     @JoinColumn(name="Sno")
     @Getter
     @Setter
-    private STUDENT s; //Sno Foreignkey 선언
+    private MEMBER s; //Sno Foreignkey 선언
 
     @Column(name = "class_info")
     @Getter

@@ -23,7 +23,7 @@ public class DoubleParkingService { //이중주차 등록과 이중주차 조회
         this.C = car;
     }
     @Transactional
-    public void DoubleParking_Entry(String Cno, int Sno,String class_info) {//이중주차 할 때 수업정보 입력
+    public void DoubleParking_Entry(String Cno, int Mno,String class_info) {//이중주차 할 때 수업정보 입력
 
         PARKING_LOT p =P.findByCno(Cno);//자동구현됨
         CAR c = C.findByCno(Cno);

@@ -2,9 +2,9 @@ package Industryacademic.project.backend.Service;
 
 import Industryacademic.project.backend.BackendApplication;
 import Industryacademic.project.backend.Entity.CAR;
-import Industryacademic.project.backend.Entity.STUDENT;
+import Industryacademic.project.backend.Entity.MEMBER;
 import Industryacademic.project.backend.repository.CARRepository;
-import Industryacademic.project.backend.repository.STUDENTRepository;
+import Industryacademic.project.backend.repository.MEMBERRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,7 +16,7 @@ class RegisterCarServiceTest {
     private CARRepository c;
 
     @Autowired
-    private STUDENTRepository s;
+    private MEMBERRepository s;
 
     @Autowired
     private RegistCarService r;
@@ -27,7 +27,7 @@ class RegisterCarServiceTest {
         int sno = 2019125003;
         String cno = "12365";
 
-        STUDENT student = new STUDENT();
+        MEMBER student = new MEMBER();
         student.setSno(sno);
         CAR C = new CAR();
         C.setCno(cno);
