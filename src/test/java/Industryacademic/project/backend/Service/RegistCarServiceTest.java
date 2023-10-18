@@ -28,7 +28,7 @@ class RegisterCarServiceTest {
         String cno = "12365";
 
         MEMBER student = new MEMBER();
-        student.setSno(sno);
+        student.setMno(sno);
         CAR C = new CAR();
         C.setCno(cno);
         C.setS(student);

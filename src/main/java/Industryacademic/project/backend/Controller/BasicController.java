@@ -29,7 +29,7 @@ public class BasicController {
     public ModelAndView registerMember(@RequestParam("mno") int mno, @RequestParam("password") String password, @RequestParam("pno") String pno) {
         rm.MEMBERRegistration(mno, password, pno); // 학생 등록 로직을 호출
 
-        ModelAndView modelAndView = new ModelAndView("home"); // View 이름을 설정합니다.
+        ModelAndView modelAndView = new ModelAndView("regist"); // View 이름을 설정합니다.
         modelAndView.addObject("message", "등록되었습니다."); // 메시지를 모델에 추가합니다.
         return modelAndView; // 메인 페이지로 리디렉션하지 않고 메시지와 함께 그대로 표시됩니다.
     }
@@ -38,7 +38,7 @@ public class BasicController {
     public ModelAndView registerCar(@RequestParam("cno") String cno, @RequestParam("mno") int mno) {
         rc.registerCar(cno, mno); // 자동차 등록 로직을 호출
 
-        ModelAndView modelAndView = new ModelAndView("home"); // View 이름을 설정합니다.
+        ModelAndView modelAndView = new ModelAndView("regist"); // View 이름을 설정합니다.
         modelAndView.addObject("message", "등록되었습니다."); // 메시지를 모델에 추가합니다.
         return modelAndView; // 메인 페이지로 리디렉션하지 않고 메시지와 함께 그대로 표시됩니다.
     }

@@ -16,10 +16,10 @@ public class CAR {
     private String cno;
 
     @ManyToOne
-    @JoinColumn(name="Sno")
+    @JoinColumn(name="Mno")
     @Getter
     @Setter
-    private MEMBER s; //Sno Foreignkey 선언
+    private MEMBER s; //Mno Foreignkey 선언
 
     @Column(name = "class_info")
     @Getter
