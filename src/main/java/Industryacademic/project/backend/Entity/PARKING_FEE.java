@@ -9,16 +9,22 @@ import lombok.Setter;
 public class PARKING_FEE {
 
     @Id
+    @Getter
+    @Setter
+    @Column(name = "MNO")
+    private int mno;  // primary key 선언
+
+
     @ManyToOne
-    @JoinColumn(name="Mno")
+    @JoinColumn(name="CNO")
     @Getter
     @Setter
-    private MEMBER M; //Mno Foreignkey 선언
+    private CAR c;
 
 
-    @Column(name = "Fee")
     @Getter
     @Setter
+    @Column(name = "FEE")
     private int fee;
 
 }
