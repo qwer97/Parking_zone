@@ -60,6 +60,7 @@ public class FeeCheckService {
             p.setFee(0);
         }
 
+
         PF.save(p);
 
 

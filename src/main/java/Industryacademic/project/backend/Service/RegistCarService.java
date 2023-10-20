@@ -18,7 +18,7 @@ public class RegistCarService {
         MEMBER MEMBER = S.findByMno(sno);
         CAR car = new CAR();
         car.setCno(cno);
-        car.setS(MEMBER);
+        car.setM(MEMBER);
 
         C.save(car);
     }

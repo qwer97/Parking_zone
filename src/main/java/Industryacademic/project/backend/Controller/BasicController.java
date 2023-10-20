@@ -4,6 +4,8 @@ import Industryacademic.project.backend.Service.LoginService;
 import Industryacademic.project.backend.Service.RegistCarService;
 import Industryacademic.project.backend.Service.RegistMEMBERService;
 import Industryacademic.project.backend.Service.RegistMEMBERService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -45,12 +47,14 @@ public class BasicController {
 
     // 로그인 양식을 위한 매핑
     @PostMapping("/login")
-    public ModelAndView login(@RequestParam("mno") int mno, @RequestParam("password") String password) {
+    public ModelAndView login(@RequestParam("mno") int mno, @RequestParam("password") String password,HttpSession session) {
         ModelAndView modelAndView = new ModelAndView(); // View 이름을 설정하지 않습니다.
 
         if (ls.login(mno, password)) {
+            session.setAttribute("mno", mno); // 세션에 mno 저장
             modelAndView.addObject("message", "인증되었습니다."); // 인증 성공 메시지를 모델에 추가합니다.
             modelAndView.setViewName("choice"); // 로그인 성공 시 대시보드 페이지로 이동
+
         } else {
             modelAndView.addObject("error", "로그인 실패"); // 로그인 실패 메시지를 모델에 추가합니다.
             modelAndView.setViewName("home"); // 로그인 실패 시 로그인 페이지로 이동
