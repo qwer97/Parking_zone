@@ -50,10 +50,10 @@ public class BasicController {
 
         if (ls.login(mno, password)) {
             modelAndView.addObject("message", "인증되었습니다."); // 인증 성공 메시지를 모델에 추가합니다.
-            modelAndView.setViewName("dashboard"); // 로그인 성공 시 대시보드 페이지로 이동
+            modelAndView.setViewName("choice"); // 로그인 성공 시 대시보드 페이지로 이동
         } else {
             modelAndView.addObject("error", "로그인 실패"); // 로그인 실패 메시지를 모델에 추가합니다.
-            modelAndView.setViewName("login"); // 로그인 실패 시 로그인 페이지로 이동
+            modelAndView.setViewName("home"); // 로그인 실패 시 로그인 페이지로 이동
         }
 
         return modelAndView;
