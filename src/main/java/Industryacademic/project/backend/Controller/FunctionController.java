@@ -38,6 +38,7 @@ public class FunctionController {
     private MEMBERRepository M;
     @Autowired
     private PARKING_FEERepository PF;
+
     @Autowired
     private PARKING_LOTRepository PL;
 
@@ -66,7 +67,7 @@ public class FunctionController {
 
         CAR c =C.findByMemberMno(mno);
 
-        PARKING_FEE pf = (PARKING_FEE) PF.findByMno(mno);
+        PARKING_FEE pf = PF.findByMno(mno);
 
         int parkingfee= fs.FeeCheck(mno,c.getCno());
 

@@ -29,6 +29,7 @@ public class BasicController {
     // 학생 등록 양식을 위한 매핑
     @PostMapping("/api/register/member")
     public ModelAndView registerMember(@RequestParam("mno") int mno, @RequestParam("password") String password, @RequestParam("pno") String pno) {
+
         rm.MEMBERRegistration(mno, password, pno); // 학생 등록 로직을 호출
 
         ModelAndView modelAndView = new ModelAndView("regist"); // View 이름을 설정합니다.

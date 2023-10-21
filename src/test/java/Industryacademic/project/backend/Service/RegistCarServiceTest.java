@@ -24,8 +24,8 @@ class RegisterCarServiceTest {
     @Test
     void registerCar_test() {
         // given
-        int sno = 2019125003;
-        String cno = "12365";
+        int sno = 2010125001;
+        String cno = "12";
 
         MEMBER student = new MEMBER();
         student.setMno(sno);

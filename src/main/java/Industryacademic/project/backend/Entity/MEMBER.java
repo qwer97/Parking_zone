@@ -11,7 +11,6 @@ public class MEMBER {
     @Id
     @Getter
     @Setter
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int mno;  // primary key 선언
 
 

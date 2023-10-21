@@ -13,7 +13,6 @@ public class CAR {
     @Column(name = "Cno")
     @Getter
     @Setter
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String cno;
 
     @ManyToOne
