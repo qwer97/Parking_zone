@@ -31,7 +31,7 @@ class RegisterCarServiceTest {
         student.setMno(sno);
         CAR C = new CAR();
         C.setCno(cno);
-        C.setS(student);
+        C.setMember(student);
 
         r.registerCar(cno, sno);
     }
