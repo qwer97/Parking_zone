@@ -2,9 +2,44 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>티켓 구매</title>
 </head>
 <body>
+<h1>티켓 구매</h1>
+
+<form id="purchase-form" action="/function/3" method="get">
+    <label for="bank">은행 선택:</label>
+    <select id="bank" name="selectedBank">
+        <option value="하나은행">하나은행</option>
+        <option value="국민은행">국민은행</option>
+        <option value="신한은행">신한은행</option>
+        <option value="우리은행">우리은행</option>
+    </select>
+    <br>
+
+    <label for="ticket-type">티켓 종류 선택:</label>
+    <select id="ticket-type" name="selectedTicketType">
+        <option value="2달권">2달권</option>
+        <option value="4달권">4달권</option>
+        <option value="1년권">1년권</option>
+    </select>
+    <br>
+
+    <label for="account-number">계좌번호 입력:</label>
+    <input type="text" id="account-number" name="accountNumber" required>
+    <br>
+
+    <button type="submit">구매</button>
+</form>
+
+<script>
+    $(document).ready(function() {
+        $("#ticket-type").change(function() {
+            var selectedTicketType = $(this).val();
+            $("input[name=selectedTicketType]").val(selectedTicketType);
+        });
+    });
+</script>
 
 </body>
 </html>

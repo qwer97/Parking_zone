@@ -9,6 +9,7 @@ import Industryacademic.project.backend.repository.CARRepository;
 import Industryacademic.project.backend.repository.MEMBERRepository;
 import Industryacademic.project.backend.repository.PARKING_FEERepository;
 import Industryacademic.project.backend.repository.PARKING_LOTRepository;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -78,12 +79,17 @@ public class FunctionController {
 
     //3이랑 4 아직 구현 x
     @GetMapping("/function/3")
-    public ModelAndView Buyticket(HttpSession session){
+    public ModelAndView Buyticket(HttpSession session, HttpServletRequest request){
         int mno = (int) session.getAttribute("mno");
-
-        ModelAndView modelAndView = new ModelAndView("result3"); // 결과를 표시할 뷰 페이지
         MEMBER member = M.findByMno(mno);
 
+        // 3에서의 작업을 수행한다.
+        String selectedTicketType = request.getParameter("selectedTicketType");
+        bt.BuyTicket(mno,member.getPassword(),selectedTicketType);
+
+        ModelAndView modelAndView = new ModelAndView("result3");
+        modelAndView.addObject("member", member);
+        modelAndView.addObject("ticketType", selectedTicketType);
 
         return modelAndView;
     }
