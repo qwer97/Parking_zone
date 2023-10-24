@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>주차장 사용률</title>
 </head>
 <body>
+<h1>주차장 사용률</h1>
 
+<p>현재 주차장 사용률은
+    <span th:text="${now}"></span>% 입니다.
+</p>
 </body>
 </html>

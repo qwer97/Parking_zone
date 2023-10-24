@@ -5,6 +5,7 @@ import Industryacademic.project.backend.Entity.MEMBER;
 import Industryacademic.project.backend.Entity.PARKING_FEE;
 import Industryacademic.project.backend.Service.BuyTicketService;
 import Industryacademic.project.backend.Service.FeeCheckService;
+import Industryacademic.project.backend.Service.Lot_CheckService;
 import Industryacademic.project.backend.repository.CARRepository;
 import Industryacademic.project.backend.repository.MEMBERRepository;
 import Industryacademic.project.backend.repository.PARKING_FEERepository;
@@ -28,9 +29,13 @@ public class FunctionController {
 
 
     @Autowired
-    public FunctionController(FeeCheckService fs, BuyTicketService bt){
+    private final Lot_CheckService lc;
+
+    @Autowired
+    public FunctionController(FeeCheckService fs, BuyTicketService bt,Lot_CheckService lc){
         this.fs =fs;
         this.bt =bt;
+        this.lc=lc;
     }
 
     @Autowired
@@ -77,7 +82,7 @@ public class FunctionController {
         return modelAndView;
     }
 
-    //3이랑 4 아직 구현 x
+
     @GetMapping("/function/3")
     public ModelAndView Buyticket(HttpSession session, HttpServletRequest request){
         int mno = (int) session.getAttribute("mno");
@@ -95,13 +100,15 @@ public class FunctionController {
     }
 
     @GetMapping("/function/4")
-    public ModelAndView nowlot(){
+    public ModelAndView nowlot(HttpSession session){
 
+        float now =lc.lotcheck();
 
         ModelAndView modelAndView = new ModelAndView("result4"); // 결과를 표시할 뷰 페이지
+        String nowStr = String.format("%.2f", now); // now를 String 타입으로 변환
+        modelAndView.addObject("now", nowStr); // 모델에 "now" 값을 추가
         return modelAndView;
     }
-
 
 
     @GetMapping("/logout") //해결
