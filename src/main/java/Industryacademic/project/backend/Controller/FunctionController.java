@@ -106,10 +106,17 @@ public class FunctionController {
 
         ModelAndView modelAndView = new ModelAndView("result4"); // 결과를 표시할 뷰 페이지
         String nowStr = String.format("%.2f", now); // now를 String 타입으로 변환
+
         modelAndView.addObject("now", nowStr); // 모델에 "now" 값을 추가
         return modelAndView;
     }
+    @GetMapping("/function/5")
+    public ModelAndView Board(HttpSession session){ // 게시판 기능
+        ModelAndView modelAndView = new ModelAndView("result5");
+        
 
+        return modelAndView;
+    }
 
     @GetMapping("/logout") //해결
     public ModelAndView logout(){
