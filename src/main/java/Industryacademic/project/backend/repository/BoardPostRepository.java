@@ -7,4 +7,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BoardPostRepository extends JpaRepository<BoardPost,Integer> {
     BoardPost findByPostid(int postid);
+
+    BoardPost findByMemberMno(int mno);
+
+    BoardPost findByPostidAndMemberMno(int postid, int mno);
 }

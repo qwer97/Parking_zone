@@ -13,7 +13,7 @@ public class BoardPost {
     @Id
     @Getter
     @Setter
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //자동으로 1씩 늘어감
     private int postid;
 
 

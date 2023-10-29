@@ -3,6 +3,7 @@ package Industryacademic.project.backend.Controller;
 import Industryacademic.project.backend.Entity.CAR;
 import Industryacademic.project.backend.Entity.MEMBER;
 import Industryacademic.project.backend.Entity.PARKING_FEE;
+import Industryacademic.project.backend.Service.BoardService;
 import Industryacademic.project.backend.Service.BuyTicketService;
 import Industryacademic.project.backend.Service.FeeCheckService;
 import Industryacademic.project.backend.Service.Lot_CheckService;
@@ -32,10 +33,14 @@ public class FunctionController {
     private final Lot_CheckService lc;
 
     @Autowired
-    public FunctionController(FeeCheckService fs, BuyTicketService bt,Lot_CheckService lc){
+    private final BoardService bs;
+
+    @Autowired
+    public FunctionController(FeeCheckService fs, BuyTicketService bt,Lot_CheckService lc,BoardService bs){
         this.fs =fs;
         this.bt =bt;
         this.lc=lc;
+        this.bs =bs;
     }
 
     @Autowired
@@ -111,9 +116,15 @@ public class FunctionController {
         return modelAndView;
     }
     @GetMapping("/function/5")
-    public ModelAndView Board(HttpSession session){ // 게시판 기능
+    public ModelAndView Board(HttpSession session,@RequestParam String con,@RequestParam String ti){ // 게시판 기능
+        int mno =(int) session.getAttribute("mno");  // 세션에서 mno 받아주고
+        MEMBER member = M.findByMno(mno);
+
+
         ModelAndView modelAndView = new ModelAndView("result5");
-        
+
+
+
 
         return modelAndView;
     }

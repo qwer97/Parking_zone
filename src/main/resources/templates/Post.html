@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>게시판</title>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<h1>게시판</h1>
+
+<form action="/function/5" method="post">
+    <label for="title">제목:</label><br>
+    <input type="text" id="title" name="title"><br>
+    <label for="content">내용:</label><br>
+    <textarea id="content" name="content"></textarea><br>
+    <input type="submit" value="등록">
+</form>
+
+<h2>게시글 목록</h2>
+<div id="postList"></div>
+
+<script>
+    $(document).ready(function(){
+        $.get("/api/posts", function(data, status){
+            data.forEach(function(post){
+                $("#postList").append("<p>" + post.title + "</p>");
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
