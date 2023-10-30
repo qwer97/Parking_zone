@@ -1,5 +1,6 @@
 package Industryacademic.project.backend.Controller;
 
+import Industryacademic.project.backend.Entity.BoardPost;
 import Industryacademic.project.backend.Entity.CAR;
 import Industryacademic.project.backend.Entity.MEMBER;
 import Industryacademic.project.backend.Entity.PARKING_FEE;
@@ -14,11 +15,13 @@ import Industryacademic.project.backend.repository.PARKING_LOTRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @Controller
 public class FunctionController {
@@ -116,19 +119,30 @@ public class FunctionController {
         return modelAndView;
     }
     @GetMapping("/function/5")
-    public ModelAndView Board(HttpSession session,@RequestParam String con,@RequestParam String ti){ // 게시판 기능
-        int mno =(int) session.getAttribute("mno");  // 세션에서 mno 받아주고
+    public ModelAndView displayBoard(HttpSession session) {
+        int mno = (int) session.getAttribute("mno");
         MEMBER member = M.findByMno(mno);
 
-
-        ModelAndView modelAndView = new ModelAndView("result5");
-
-
-
-
+        ModelAndView modelAndView = new ModelAndView("Post");
         return modelAndView;
     }
 
+    @GetMapping("/api/posts")
+    public ResponseEntity<List<BoardPost>> getAllPosts(HttpSession session) {
+        List<BoardPost> posts = bs.Viewall();
+        return new ResponseEntity<>(posts, HttpStatus.OK);
+    }
+
+    @PostMapping("/api/posts")
+    public ResponseEntity<Void> createPost(@RequestBody BoardPost post,HttpSession session) {
+        // Assuming you have a method to save the post in your BoardService
+        int mno = (int) session.getAttribute("mno");
+        MEMBER member = M.findByMno(mno);
+
+        bs.RegistPost(member.getMno(),post.getTitle(),post.getContent());
+
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
     @GetMapping("/logout") //해결
     public ModelAndView logout(){
         ModelAndView modelAndView= new ModelAndView("home"); //초기화면으로 돌아감

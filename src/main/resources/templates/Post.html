@@ -8,12 +8,12 @@
 <body>
 <h1>게시판</h1>
 
-<form action="/function/5" method="post">
+<form id="postForm">
     <label for="title">제목:</label><br>
     <input type="text" id="title" name="title"><br>
     <label for="content">내용:</label><br>
     <textarea id="content" name="content"></textarea><br>
-    <input type="submit" value="등록">
+    <input type="button" id="submitPost" value="등록">
 </form>
 
 <h2>게시글 목록</h2>
@@ -22,8 +22,32 @@
 <script>
     $(document).ready(function(){
         $.get("/api/posts", function(data, status){
+            $("#postList").empty();
             data.forEach(function(post){
-                $("#postList").append("<p>" + post.title + "</p>");
+                $("#postList").append("<p>" + post.title+  " " + post.content + "</p>");
+            });
+        });
+
+        $("#submitPost").click(function() {
+            var title = $("#title").val();
+            var content = $("#content").val();
+            $.ajax({
+                url: "/api/posts",
+                type: "POST",
+                data: JSON.stringify({ title: title, content: content }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function(data, status){
+                    $("#title").val("");
+                    $("#content").val("");
+                    // Reload posts after adding a new one
+                    $.get("/api/posts", function(data, status){
+                        $("#postList").empty();
+                        data.forEach(function(post){
+                            $("#postList").append("<p>" + post.title + "</p>");
+                        });
+                    });
+                }
             });
         });
     });
