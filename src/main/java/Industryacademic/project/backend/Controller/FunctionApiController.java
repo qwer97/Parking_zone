@@ -61,65 +61,61 @@ public class FunctionApiController {
     }
 
 
-    @GetMapping("/1")
-    public ModelAndView checkInformation(HttpSession session) {
+      @GetMapping("/1")
+    public ResponseEntity<Map<String, Object>> checkInformation(HttpSession session) {
         int mno = (int) session.getAttribute("mno"); // 세션에서 mno 가져오기
 
-        ModelAndView modelAndView = new ModelAndView("result1"); // 결과를 표시할 뷰 페이지
         MEMBER member = M.findByMno(mno); // 멤버 정보 가져오기
         CAR c = C.findByMemberMno(mno); // CAR 정보 가져오기
 
-        modelAndView.addObject("member", member);
-        modelAndView.addObject("car", c.getCno());
+        Map<String, Object> response = new HashMap<>();
+        response.put("member", member);
+        response.put("car", c.getCno());
 
-        return modelAndView;
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/2")
-    public ModelAndView checkParkingFee(HttpSession session) {
+    public ResponseEntity<Map<String, Object>> checkParkingFee(HttpSession session) {
         int mno = (int) session.getAttribute("mno");
 
-        ModelAndView modelAndView = new ModelAndView("result2"); // 결과를 표시할 뷰 페이지
-
         MEMBER m = M.findByMno(mno);
-
         CAR c = C.findByMemberMno(mno);
 
         PARKING_FEE pf = PF.findByMno(mno);
 
         int parkingfee = fs.FeeCheck(mno, c.getCno());
 
-        modelAndView.addObject("message", parkingfee); // 결과를 메시지로 전달
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", parkingfee);
 
-        return modelAndView;
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/3")
-    public ModelAndView Buyticket(HttpSession session, HttpServletRequest request) {
+    public ResponseEntity<Map<String, Object>> Buyticket(HttpSession session, HttpServletRequest request) {
         int mno = (int) session.getAttribute("mno");
         MEMBER member = M.findByMno(mno);
 
-        // 3에서의 작업을 수행한다.
         String selectedTicketType = request.getParameter("selectedTicketType");
         bt.BuyTicket(mno, member.getPassword(), selectedTicketType);
 
-        ModelAndView modelAndView = new ModelAndView("result3");
-        modelAndView.addObject("member", member);
-        modelAndView.addObject("ticketType", selectedTicketType);
+        Map<String, Object> response = new HashMap<>();
+        response.put("member", member);
+        response.put("ticketType", selectedTicketType);
 
-        return modelAndView;
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/4")
-    public ModelAndView nowlot(HttpSession session) {
+    public ResponseEntity<Map<String, Object>> nowlot(HttpSession session) {
         float now = lc.lotcheck();
+        String nowStr = String.format("%.2f", now);
 
-        ModelAndView modelAndView = new ModelAndView("result4"); // 결과를 표시할 뷰 페이지
-        String nowStr = String.format("%.2f", now); // now를 String 타입으로 변환
+        Map<String, Object> response = new HashMap<>();
+        response.put("now", nowStr);
 
-        modelAndView.addObject("now", nowStr); // 모델에 "now" 값을 추가
-
-        return modelAndView;
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/5")
@@ -132,14 +128,13 @@ public class FunctionApiController {
     }
 
     @GetMapping("/api/posts")
-    public ResponseEntity<List<BoardPost> > getAllPosts(HttpSession session) {
+    public ResponseEntity<List<BoardPost>> getAllPosts(HttpSession session) {
         List<BoardPost> posts = bs.Viewall();
         return new ResponseEntity<>(posts, HttpStatus.OK);
     }
 
     @PostMapping("/api/posts")
     public ResponseEntity<Void> createPost(@RequestBody BoardPost post, HttpSession session) {
-        // Assuming you have a method to save the post in your BoardService
         int mno = (int) session.getAttribute("mno");
         MEMBER member = M.findByMno(mno);
 
@@ -150,7 +145,7 @@ public class FunctionApiController {
 
     @GetMapping("/logout")
     public ModelAndView logout() {
-        ModelAndView modelAndView = new ModelAndView("home"); // 초기화면으로 돌아감
+        ModelAndView modelAndView = new ModelAndView("home");
         return modelAndView;
     }
 }
