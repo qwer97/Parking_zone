@@ -8,9 +8,9 @@ import lombok.Setter;
 @Entity
 @Table(name="MEMBER")
 public class MEMBER {
-    @Id
     @Getter
     @Setter
+    @Id
     private int mno;  // primary key 선언
 
 

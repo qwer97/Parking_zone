@@ -17,6 +17,7 @@ public class NearLotService {
     @Value("${kakao.maps.api.ka-header}")
     private String kakaoMapsKaHeader;
 
+    /*
     private final RestTemplate restTemplate;
 
     public NearLotService(RestTemplate restTemplate) {
@@ -38,4 +39,6 @@ public class NearLotService {
 
         return response.getBody();
     }
+
+     */
 }
