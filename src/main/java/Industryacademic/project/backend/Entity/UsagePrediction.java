@@ -8,13 +8,12 @@ import lombok.Setter;
 import java.sql.Time;
 import java.util.Date;
 
-@Entity
-@Table(name="UsagePrediction")
+@Entity(name="Usage_Prediction")
 public class UsagePrediction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @Getter
     @Setter
@@ -30,6 +29,7 @@ public class UsagePrediction {
 
     @Getter
     @Setter
+    @Column(name="Precipitation_Amount")
     private Double precipitationAmount; //예측량
 
 }

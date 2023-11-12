@@ -8,7 +8,9 @@ import org.springframework.stereotype.Repository;
 import java.util.Date;
 
 @Repository
-public interface UsagePredictionRepository extends JpaRepository<UsagePrediction,Long> {
-    UsagePrediction findByIdAndDateAndTime(long id, Date date,String time);
+public interface UsagePredictionRepository extends JpaRepository<UsagePrediction,Integer> {
+    UsagePrediction findByIdAndDateAndTime(int id, Date date,String time);
+    UsagePrediction findByIdAndDate(int id, Date date);
 
+    UsagePrediction findById(int id);
 }

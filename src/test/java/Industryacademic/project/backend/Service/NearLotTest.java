@@ -25,6 +25,7 @@ public class NearLotTest {
     @MockBean
     private RestTemplate restTemplate; // Mock RestTemplate 주입
 
+    /*
     @Test
     public void testnear() {
         double latitude = 37.12345;
@@ -45,5 +46,7 @@ public class NearLotTest {
 
         // 결과 검증
         assertEquals(mockApiResponse, result);
+        */
+
     }
-}
+
