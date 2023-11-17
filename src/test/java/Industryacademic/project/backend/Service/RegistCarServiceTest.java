@@ -24,15 +24,16 @@ class RegisterCarServiceTest {
     @Test
     void registerCar_test() {
         // given
-        int sno = 2010125001;
+        String id = "kwak";
         String cno = "12";
 
-        MEMBER student = new MEMBER();
-        student.setMno(sno);
+        MEMBER student = s.findById(id);
+
         CAR C = new CAR();
         C.setCno(cno);
         C.setMember(student);
 
-        r.registerCar(cno, sno);
+        r.registerCar(cno,id);
+
     }
 }

@@ -55,7 +55,7 @@ public class FunctionController {
     @Autowired
     private PARKING_LOTRepository PL;
 
-    @GetMapping("/function/1") //해결
+    @GetMapping("/function/1") //로그인 해야 사용가능
     public ModelAndView checkInformation(HttpSession session){
         int mno = (int) session.getAttribute("mno"); // 세션에서 mno 가져오기
 
@@ -70,7 +70,7 @@ public class FunctionController {
     }
 
 
-    @GetMapping("/function/2")
+    @GetMapping("/function/2")//로그인 해야 사용가능
     public ModelAndView checkParkingFee(HttpSession session){
         int mno = (int) session.getAttribute("mno");
 

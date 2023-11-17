@@ -22,6 +22,7 @@ public class LoginServiceTest {
     @Test
     public void testLogin(){
         int Mno = 2017125037;
+        String id ="kwak";
         String password ="2222";
         String Pno ="010-4019-3269";
         MEMBER ST = new MEMBER();
@@ -33,6 +34,6 @@ public class LoginServiceTest {
         when(s.findByMnoAndPassword(Mno, password)).thenReturn(ST);
 
         // Then
-        assertTrue(L.login(Mno, password));
+        assertTrue(L.login(id, password));
     }
 }

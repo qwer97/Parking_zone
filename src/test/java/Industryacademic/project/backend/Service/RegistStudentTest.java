@@ -19,15 +19,11 @@ public class RegistStudentTest {
 
     @Test
     public void RegistTest(){ //test에서는 no parameter
-        MEMBER s = new MEMBER();
-        int mno = 2019123002;
-        String password ="zzgg";
+
+        String id ="kwak";
+        String password ="kau";
         String pno = "010-2345-3667";
 
-        s.setMno(mno);
-        s.setPassword(password);
-        s.setPno(pno);
-
-        R.MEMBERRegistration(mno,password,pno);
+        R.MEMBERRegistration(id,password,pno);
     }
 }

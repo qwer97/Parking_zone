@@ -31,6 +31,7 @@ public class ForecastService {
 
         // 9, 12, 15, 18, 21시의 예측량을 조회
         int index = 0;
+
         if (hour >= 9 && hour < 12) {
             index = 0;
         } else if (hour >= 12 && hour < 15) {
@@ -44,6 +45,7 @@ public class ForecastService {
         }
 
         //하나의 날짜에 5개의 행. 11월 12일부터 예측치가 들어가므로 오늘이 time+date 를 통해 몇번째 id인지 계산 필요
+        //데이터의 형태가 정확히 전달되면 그걸 기반으로 수식을 맞출예정. 일단은 그냥 id=3 출력하는걸로
         int id =3; //(today.getYear() - 2023) * 365 * 5 + (today.getMonth() - 11) * 24 + index+1;
 
         u=UP.findById(id);
