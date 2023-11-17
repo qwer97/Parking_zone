@@ -18,7 +18,7 @@ public class ParkingServiceTest {
     @Test
     public void TestParking(){
 
-        String cno = "김3333";
+        String cno = "아1111";
         PARKING_LOT p = new PARKING_LOT();
         p.setCno(cno);
 

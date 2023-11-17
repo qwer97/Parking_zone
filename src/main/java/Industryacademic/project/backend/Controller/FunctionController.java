@@ -57,11 +57,11 @@ public class FunctionController {
 
     @GetMapping("/function/1") //로그인 해야 사용가능
     public ModelAndView checkInformation(HttpSession session){
-        int mno = (int) session.getAttribute("mno"); // 세션에서 mno 가져오기
+        String id = (String) session.getAttribute("id"); // 세션에서 id 가져오기
 
         ModelAndView modelAndView = new ModelAndView("result1"); // 결과를 표시할 뷰 페이지
-        MEMBER member = M.findByMno(mno); // 멤버 정보 가져오기
-        CAR c = C.findByMemberMno(mno); // CAR 정보 가져오기
+        MEMBER member = M.findById(id); // 멤버 정보 가져오기
+        CAR c = C.findByMemberMno(member.getMno()); // CAR 정보 가져오기
 
         modelAndView.addObject("member", member);
         modelAndView.addObject("car", c.getCno());
@@ -72,32 +72,32 @@ public class FunctionController {
 
     @GetMapping("/function/2")//로그인 해야 사용가능
     public ModelAndView checkParkingFee(HttpSession session){
-        int mno = (int) session.getAttribute("mno");
+        String id = (String) session.getAttribute("id");
 
         ModelAndView modelAndView = new ModelAndView("result2"); // 결과를 표시할 뷰 페이지
 
-        MEMBER m = M.findByMno(mno);
+        MEMBER member = M.findById(id);
 
-        CAR c =C.findByMemberMno(mno);
+        CAR c =C.findByMemberMno(member.getMno());
 
-        PARKING_FEE pf = PF.findByMno(mno);
+        PARKING_FEE pf = PF.findByMno(member.getMno());
 
-        int parkingfee= fs.FeeCheck(mno,c.getCno());
+        int parkingfee= fs.FeeCheck(member.getMno(),c.getCno());
 
         modelAndView.addObject("message", parkingfee); // 결과를 메시지로 전달
 
         return modelAndView;
     }
 
-
     @GetMapping("/function/3")
     public ModelAndView Buyticket(HttpSession session, HttpServletRequest request){
-        int mno = (int) session.getAttribute("mno");
-        MEMBER member = M.findByMno(mno);
+        String id = (String) session.getAttribute("id");
+
+        MEMBER member = M.findById(id);
 
         // 3에서의 작업을 수행한다.
         String selectedTicketType = request.getParameter("selectedTicketType");
-        bt.BuyTicket(mno,member.getPassword(),selectedTicketType);
+        bt.BuyTicket(member.getMno(), member.getPassword(),selectedTicketType);
 
         ModelAndView modelAndView = new ModelAndView("result3");
         modelAndView.addObject("member", member);
@@ -105,7 +105,6 @@ public class FunctionController {
 
         return modelAndView;
     }
-
     @GetMapping("/function/4")
     public ModelAndView nowlot(HttpSession session){
 
@@ -119,8 +118,8 @@ public class FunctionController {
     }
     @GetMapping("/function/5")
     public ModelAndView displayBoard(HttpSession session) {
-        int mno = (int) session.getAttribute("mno");
-        MEMBER member = M.findByMno(mno);
+        String id = (String) session.getAttribute("id");
+        MEMBER member = M.findById(id);
 
         ModelAndView modelAndView = new ModelAndView("Post");
         return modelAndView;
@@ -135,8 +134,9 @@ public class FunctionController {
     @PostMapping("/api/posts")
     public ResponseEntity<Void> createPost(@RequestBody BoardPost post,HttpSession session) {
         // Assuming you have a method to save the post in your BoardService
-        int mno = (int) session.getAttribute("mno");
-        MEMBER member = M.findByMno(mno);
+        String id = (String) session.getAttribute("id");
+
+        MEMBER member = M.findById(id);
 
         bs.RegistPost(member.getMno(),post.getTitle(),post.getContent());
 
