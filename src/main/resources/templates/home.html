@@ -33,6 +33,18 @@
             <input type="password" name="password" placeholder="비밀번호">
             <input type="submit" value="로그인">
         </form>
+        <!-- /api/nowlot 양식 -->
+        <form th:action="@{/api/nowlot}" method="get">
+            <h2>주차장 상태 확인</h2>
+            <button type="submit">확인</button>
+        </form>
+
+        <!-- /api/showboard 양식 -->
+        <form th:action="@{/api/showboard}" method="get">
+            <h2>게시판 보기</h2>
+            <button type="submit">보기</button>
+        </form>
+
 
         <!-- Forecast 양식 -->
         <form id="forecastForm" action="/api/forecast" method="post">

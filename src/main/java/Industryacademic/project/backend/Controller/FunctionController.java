@@ -105,17 +105,7 @@ public class FunctionController {
 
         return modelAndView;
     }
-    @GetMapping("/function/4")
-    public ModelAndView nowlot(HttpSession session){
 
-        float now =lc.lotcheck();
-
-        ModelAndView modelAndView = new ModelAndView("result4"); // 결과를 표시할 뷰 페이지
-        String nowStr = String.format("%.2f", now); // now를 String 타입으로 변환
-
-        modelAndView.addObject("now", nowStr); // 모델에 "now" 값을 추가
-        return modelAndView;
-    }
     @GetMapping("/function/5")
     public ModelAndView displayBoard(HttpSession session) {
         String id = (String) session.getAttribute("id");
