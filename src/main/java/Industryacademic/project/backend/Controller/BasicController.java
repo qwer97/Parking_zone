@@ -1,8 +1,7 @@
 package Industryacademic.project.backend.Controller;
 
-import Industryacademic.project.backend.Service.LoginService;
-import Industryacademic.project.backend.Service.RegistCarService;
-import Industryacademic.project.backend.Service.RegistMEMBERService;
+import Industryacademic.project.backend.Entity.UsagePrediction;
+import Industryacademic.project.backend.Service.*;
 import Industryacademic.project.backend.Service.RegistMEMBERService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -18,13 +17,29 @@ public class BasicController {
     private final RegistCarService rc;
     private final LoginService ls;
 
+    private final ForecastService fs;
 
     @Autowired
-    public BasicController(RegistMEMBERService rm, RegistCarService rc, LoginService ls){
+    public BasicController(RegistMEMBERService rm, RegistCarService rc, LoginService ls,ForecastService fs){
         this.rm =rm;
         this.rc =rc;
         this.ls =ls;
+        this.fs=fs;
 
+    }
+
+    @PostMapping("/api/forecast")
+    public ModelAndView forecast(@RequestParam("time") String time, @RequestParam("weather") String weather) {
+
+        UsagePrediction usagePrediction=fs.showForecast(time, weather);
+
+        ModelAndView modelAndView = new ModelAndView("forecast");
+        modelAndView.addObject("message", "예측량을 제공하겠습니다.");
+
+        modelAndView.addObject("usagePrediction", usagePrediction); // 실제 열과 이름 맞춰야 함
+
+
+        return modelAndView;
     }
 
 
@@ -38,6 +53,7 @@ public class BasicController {
         modelAndView.addObject("message", "등록되었습니다."); // 메시지를 모델에 추가합니다.
         return modelAndView; // 메인 페이지로 리디렉션하지 않고 메시지와 함께 그대로 표시됩니다.
     }
+
     // 자동차 등록 양식을 위한 매핑
     @PostMapping("/api/register/car")
     public ModelAndView registerCar(@RequestParam("cno") String cno, @RequestParam("id") String id) {

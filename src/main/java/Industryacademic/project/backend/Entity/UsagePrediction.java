@@ -6,6 +6,7 @@ import lombok.Setter;
 
 
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity(name="Usage_Prediction")
@@ -17,7 +18,7 @@ public class UsagePrediction {
 
     @Getter
     @Setter
-    private Date date; //날짜
+    private LocalDate date; //날짜
 
     @Getter
     @Setter

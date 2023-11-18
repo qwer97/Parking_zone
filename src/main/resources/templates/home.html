@@ -33,6 +33,20 @@
             <input type="password" name="password" placeholder="비밀번호">
             <input type="submit" value="로그인">
         </form>
+
+        <!-- Forecast 양식 -->
+        <form id="forecastForm" action="/api/forecast" method="post">
+            <h2>예측</h2>
+            <input type="text" name="time" placeholder="시간">
+            <input type="text" name="weather" placeholder="날씨">
+            <button type="button" onclick="submitForecastForm()">예측 진행</button>
+        </form>
+
+        <script>
+            function submitForecastForm() {
+                document.getElementById("forecastForm").submit();
+            }
+        </script>
     </div>
 </div>
 </body>

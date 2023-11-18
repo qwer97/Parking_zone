@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Date;
+
 @SpringBootTest(classes = BackendApplication.class)
 public class ForecastTest {
 
@@ -26,5 +28,15 @@ public class ForecastTest {
         String weather ="흐림";
 
         fc.showForecast(time,weather);
+    }
+
+    @Test
+    public void justtest(){
+        // 현재 날짜와 시간 얻기
+        Date today = new Date();
+
+        // 현재 날짜와 시간 출력
+        System.out.println("Current date and time: " + today);
+
     }
 }
