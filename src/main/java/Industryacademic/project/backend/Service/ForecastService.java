@@ -23,13 +23,13 @@ public class ForecastService {
 
 
     @Transactional
-    public UsagePrediction showForecast(String time, String weather){//예측량 제공
+    public UsagePrediction showForecast(String time){//예측량 제공
 
         UsagePrediction u = new UsagePrediction();
 
         LocalDate today = LocalDate.now(); // 오늘의 날짜
 
-        LocalDate targetDate = LocalDate.of(2023,11,17);
+        LocalDate targetDate = LocalDate.of(2023,11,24);
 
 
         long daysPassed = targetDate.until(today).getDays();

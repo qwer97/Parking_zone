@@ -53,6 +53,7 @@ public class BasicController {
         String nowStr = String.format("%.2f", now); // now를 String 타입으로 변환
 
         modelAndView.addObject("now", nowStr); // 모델에 "now" 값을 추가
+
         return modelAndView;
     }
 
@@ -64,9 +65,9 @@ public class BasicController {
     }
 
     @PostMapping("/api/forecast")
-    public ModelAndView forecast(@RequestParam("time") String time, @RequestParam("weather") String weather) {
+    public ModelAndView forecast(@RequestParam("time") String time) {
 
-        UsagePrediction usagePrediction=fs.showForecast(time, weather);
+        UsagePrediction usagePrediction=fs.showForecast(time);
 
         ModelAndView modelAndView = new ModelAndView("forecast");
         modelAndView.addObject("message", "예측량을 제공하겠습니다.");

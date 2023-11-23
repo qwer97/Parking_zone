@@ -15,7 +15,7 @@ public class Lot_CheckService {
     }
 
     public float lotcheck(){
-        float max =217; //실제 가능한 주차 대수 - 217
+        float max =57; //실제 가능한 주차 대수 - 217
 
         float now =  PL.count(); // 현재 DB 내의 대수를 COUNT
 

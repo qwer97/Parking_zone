@@ -132,6 +132,25 @@ public class FunctionController {
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+    /*
+    @PostMapping("/api/posts")
+    public ResponseEntity<Void> deletePost(@RequestParam int postId, HttpSession session) {
+        String id = (String) session.getAttribute("id");
+
+        MEMBER member = M.findById(id);
+        try {
+            bs.DeletePost(postId, member.getMno());
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            // 예외 발생 시 적절한 응답 처리
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+    }
+
+     */
+
+
     @GetMapping("/logout") //해결
     public ModelAndView logout(){
         ModelAndView modelAndView= new ModelAndView("home"); //초기화면으로 돌아감
