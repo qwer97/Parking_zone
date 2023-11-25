@@ -23,6 +23,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.projectlombok:lombok:1.18.28'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'com.google.code.gson:gson:2.8.6'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	compileOnly 'org.projectlombok:lombok:1.18.20'
@@ -35,7 +36,6 @@ dependencies {
 		useJUnitPlatform()
 	}
 }
-
 
 tasks.named('test') {
 	useJUnitPlatform()
