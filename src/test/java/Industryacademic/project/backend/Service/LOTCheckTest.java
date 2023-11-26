@@ -22,4 +22,11 @@ public class LOTCheckTest {
     public void lotchecktest(){
         System.out.println(lc.lotcheck());
     }
+
+    @Test
+    public void TTEST(){
+        System.out.println(lc.getStatus());
+    }
+
+
 }

@@ -23,7 +23,7 @@ public class ForecastService {
 
 
     @Transactional
-    public UsagePrediction showForecast(String time){//예측량 제공
+    public UsagePrediction showForecast(String time, String weather){//예측량 제공
 
         UsagePrediction u = new UsagePrediction();
 

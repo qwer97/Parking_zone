@@ -27,7 +27,7 @@ public class ForecastTest {
         String time ="15:12";
         String weather ="흐림";
 
-        fc.showForecast(time);
+        fc.showForecast(time,weather);
     }
 
     @Test

@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
@@ -31,11 +33,14 @@ public class BasicController {
 
     private final Lot_CheckService lc;
 
+    private final WeatherService ws;
+
     private final ParkingService ps;
 
     @Autowired
-    public BasicController(RegistMEMBERService rm, RegistCarService rc, LoginService ls,ForecastService fs,BoardService bs,Lot_CheckService lc,ParkingService ps){
+    public BasicController(RegistMEMBERService rm, WeatherService ws,RegistCarService rc, LoginService ls,ForecastService fs,BoardService bs,Lot_CheckService lc,ParkingService ps){
         this.rm =rm;
+        this.ws=ws;
         this.rc =rc;
         this.ls =ls;
         this.fs=fs;
@@ -65,9 +70,16 @@ public class BasicController {
     }
 
     @PostMapping("/api/forecast")
-    public ModelAndView forecast(@RequestParam("time") String time) {
+    public ModelAndView forecast(@RequestParam("time") String time) { // 코드 수정 필요
+        LocalDateTime localDateTime = LocalDateTime.parse(time, DateTimeFormatter.ofPattern("yyyyMMdd"));
 
-        UsagePrediction usagePrediction=fs.showForecast(time);
+        // Extract date and time components
+        String baseDate = localDateTime.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+        String baseTime = time;
+
+        String result = ws.getWeatherData(baseDate, baseTime, "126", "37");
+
+        UsagePrediction usagePrediction = fs.showForecast(time, result);
 
         ModelAndView modelAndView = new ModelAndView("forecast");
         modelAndView.addObject("message", "예측량을 제공하겠습니다.");
