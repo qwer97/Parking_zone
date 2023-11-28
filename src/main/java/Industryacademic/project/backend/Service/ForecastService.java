@@ -55,8 +55,7 @@ public class ForecastService {
         //하나의 날짜에 4개의 행. 11월 12일부터 예측치가 들어가므로 오늘이 time+date 를 통해 몇번째 id인지 계산 필요
         //데이터의 형태가 정확히 전달되면 그걸 기반으로 수식을 맞출예정.
 
-
-
+        
         int id =(int)((daysPassed*5) + index+1);
 
         u=UP.findById(id);

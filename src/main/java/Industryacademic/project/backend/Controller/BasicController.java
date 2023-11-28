@@ -37,6 +37,7 @@ public class BasicController {
 
     private final ParkingService ps;
 
+
     @Autowired
     public BasicController(RegistMEMBERService rm, WeatherService ws,RegistCarService rc, LoginService ls,ForecastService fs,BoardService bs,Lot_CheckService lc,ParkingService ps){
         this.rm =rm;
@@ -52,10 +53,10 @@ public class BasicController {
     @GetMapping("/api/nowlot")
     public ModelAndView nowlot(HttpSession session){ // 로그인 안해도 사용 가능
 
-        float now =lc.lotcheck();
+        String now =lc.getStatus();
 
         ModelAndView modelAndView = new ModelAndView("result4"); // 결과를 표시할 뷰 페이지
-        String nowStr = String.format("%.2f", now); // now를 String 타입으로 변환
+        String nowStr = now;
 
         modelAndView.addObject("now", nowStr); // 모델에 "now" 값을 추가
 
@@ -130,6 +131,5 @@ public class BasicController {
         return modelAndView;
     }
 
-//Spring Security , 예외처리 -> 구현
 
 }

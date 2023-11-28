@@ -7,6 +7,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.*;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
+import org.w3c.dom.Document;
+import org.xml.sax.InputSource;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import java.io.StringReader;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 //4c686665726b7761383461797a5347 api 인증키
 @Service
@@ -23,20 +31,60 @@ public class Lot_CheckService {
         this.PL=PL;
     }
 
-    public String getStatus(){
+    public String getStatus(){ // 33%을 기준으로 3개(1층,지상,b1주차장
         RestTemplate rt = new RestTemplate();
         String url = API_URL;
 
-        ResponseEntity<String>response = rt.getForEntity(url,String.class);
+        ResponseEntity<String> response = rt.getForEntity(url, String.class);
 
-        if(response.getStatusCodeValue()==200){
+        if (response.getStatusCodeValue() == 200) {
             String body = response.getBody();
-            return body;
-        }else{
+            double percentage = calculatePercentage(body);
+
+            if(percentage<=33.33){
+                return "원활";
+            }else if(percentage>33.33 & percentage<=66.66){
+                return "보통";
+            }else if(percentage>66.66){
+                return "혼잡";
+            }
+
+            return "확인 x";
+
+
+        } else {
             System.out.println("실패");
-            return null; // 실패 시 null을 반환합니다.
+            return null;
         }
     }
+    private double calculatePercentage(String xmlResponse) {
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            InputSource inputSource = new InputSource(new StringReader(xmlResponse));
+            Document document = builder.parse(inputSource);
+            document.getDocumentElement().normalize();
+
+            double totalColumn3 = 0;
+            double totalColumn4 = 0;
+
+            for (int i = 0; i < document.getElementsByTagName("row").getLength(); i++) {
+                totalColumn3 += Double.parseDouble(document.getElementsByTagName("COLUMN3").item(i).getTextContent());
+                totalColumn4 += Double.parseDouble(document.getElementsByTagName("COLUMN4").item(i).getTextContent());
+            }
+            if (totalColumn3 != 0) {
+
+                double percentage = (totalColumn4 / totalColumn3) * 100;
+                return percentage;
+            }else{
+                return 0;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1; // Handle errors
+        }
+    }
+
 
 
 

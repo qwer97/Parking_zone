@@ -25,6 +25,7 @@ public class LOTCheckTest {
 
     @Test
     public void TTEST(){
+
         System.out.println(lc.getStatus());
     }
 
