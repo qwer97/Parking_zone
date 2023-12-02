@@ -9,28 +9,36 @@ import java.sql.Time;
 import java.time.LocalDate;
 import java.util.Date;
 
-@Entity(name="Usage_Prediction")
+@Entity(name="Predict_Data")
 public class UsagePrediction {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
     private int id;
 
     @Getter
     @Setter
-    private LocalDate date; //날짜
+    @Column(name="년도")
+    private int Year;
 
     @Getter
     @Setter
-    private String time; //시간
+    @Column(name="월")
+    private int Month;
 
     @Getter
     @Setter
-    private String weather; //날씨
+    @Column(name="일")
+    private int Day;
 
     @Getter
     @Setter
-    @Column(name="Precipitation_Amount")
+    @Column(name="시간")
+    private int time; //시간
+
+    @Getter
+    @Setter
+    @Column(name="혼잡도")
     private Double precipitationAmount; //예측량
 
 }

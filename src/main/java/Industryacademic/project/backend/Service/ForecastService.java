@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 @Service
@@ -23,46 +24,67 @@ public class ForecastService {
 
 
     @Transactional
-    public UsagePrediction showForecast(String time, String weather){//예측량 제공
+    public String showForecast(int year,int month,int day,int time){//예측량 제공
 
         UsagePrediction u = new UsagePrediction();
+        //2023 1월 1일 부터 얼마나 지났는지 파악
+        //하루에 13개의 예측치
+        // 년도/월/일/시간을 입력함으로써 id가 몇인지 알아내서 findById수행
 
-        LocalDate today = LocalDate.now(); // 오늘의 날짜
+        LocalDate start = LocalDate.of(2023,1,1);
+        LocalDate target =LocalDate.of(year,month,day);
 
-        LocalDate targetDate = LocalDate.of(2023,11,24);
+        int daypass = (int)ChronoUnit.DAYS.between(start,target);
 
 
-        long daysPassed = targetDate.until(today).getDays();
+        int id =daypass*14;
+        int index =0;
 
-        //9:30 -> 9~11:59니까 9시의 예측을 들고 와야함
-        int hour = Integer.parseInt(time.substring(0, 2));
-
-        // 9, 12, 15, 18, 21시의 예측량을 조회 -> 추후에 변경 예정
-        int index = 0;
-
-        if (hour >= 9 && hour < 12) {
-            index = 0;
-        } else if (hour >= 12 && hour < 15) {
-            index = 1;
-        } else if (hour >= 15 && hour < 18) {
-            index = 2;
-        } else if (hour >= 18 && hour <= 21) {
-            index = 3;
-        }else{
-            index=4;
+        if(time ==9){
+            index =0;
+        }else if(time==10){
+            index =1;
+        }else if(time==11){
+            index =2;
+        }else if(time==12){
+            index =3;
+        }else if(time==13){
+            index =4;
+        }else if(time==14){
+            index =5;
+        }else if(time==15){
+            index =6;
+        }else if(time==16){
+            index =7;
+        }else if(time==17){
+            index =8;
+        }else if(time==18){
+            index =9;
+        }else if(time==19){
+            index =10;
+        }else if(time==20){
+            index =11;
+        }else if(time==21){
+            index =12;
+        }else if(time==22){
+            index =13;
         }
 
-        //하나의 날짜에 4개의 행. 11월 12일부터 예측치가 들어가므로 오늘이 time+date 를 통해 몇번째 id인지 계산 필요
-        //데이터의 형태가 정확히 전달되면 그걸 기반으로 수식을 맞출예정.
-
-        
-        int id =(int)((daysPassed*5) + index+1);
+        id +=index ;//몇번째 index?
 
         u=UP.findById(id);
 
         if (u != null) {
-            System.out.println(u.getPrecipitationAmount());
-            return u;
+            if(u.getPrecipitationAmount()==0.0){
+                return "원활";
+            }else if(u.getPrecipitationAmount()==1.0){
+                return "보통";
+            }else if(u.getPrecipitationAmount()==2.0){
+                return "혼잡";
+            }else{
+                return "매우 혼잡";
+            }
+
         } else {
             System.out.println("데이터가 없습니다.");
             return null;

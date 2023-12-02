@@ -71,7 +71,8 @@ public class BasicController {
     }
 
     @PostMapping("/api/forecast")
-    public ModelAndView forecast(@RequestParam("time") String time) { // 코드 수정 필요
+    public ModelAndView forecast(@RequestParam("year") int year,@RequestParam("month") int month , @RequestParam("day") int day, @RequestParam("time") String time) { // 코드 수정 필요
+        /*
         LocalDateTime localDateTime = LocalDateTime.parse(time, DateTimeFormatter.ofPattern("yyyyMMdd"));
 
         // Extract date and time components
@@ -80,13 +81,15 @@ public class BasicController {
 
         String result = ws.getWeatherData(baseDate, baseTime, "126", "37");
 
-        UsagePrediction usagePrediction = fs.showForecast(time, result);
+        int tiime =Integer.parseInt(time);
+         */
+        int tiime =Integer.parseInt(time);
+        String result2 = fs.showForecast(year,month,day,tiime);
 
         ModelAndView modelAndView = new ModelAndView("forecast");
         modelAndView.addObject("message", "예측량을 제공하겠습니다.");
 
-        modelAndView.addObject("usagePrediction", usagePrediction); // 실제 열과 이름 맞춰야 함
-
+        modelAndView.addObject("usagePrediction", result2); // 실제 열과 이름 맞춰야 함
 
         return modelAndView;
     }

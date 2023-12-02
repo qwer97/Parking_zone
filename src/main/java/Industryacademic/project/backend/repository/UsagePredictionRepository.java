@@ -6,11 +6,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
+import java.util.List;
 
 @Repository
 public interface UsagePredictionRepository extends JpaRepository<UsagePrediction,Integer> {
-    UsagePrediction findByIdAndDateAndTime(int id, Date date,String time);
-    UsagePrediction findByIdAndDate(int id, Date date);
+    UsagePrediction findById(int id); //index를 기반으로 찾는다
 
-    UsagePrediction findById(int id);
+
+    //UsagePrediction findByYearAndMonthAndDayAndTime(int Year, int Month, int Day, int Time);
 }

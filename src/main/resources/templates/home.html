@@ -49,8 +49,10 @@
         <!-- Forecast 양식 -->
         <form id="forecastForm" action="/api/forecast" method="post">
             <h2>예측</h2>
+            <input type ="text" name = "year" placeholder="년">
+            <input type ="text" name = "month" placeholder="월">
+            <input type ="text" name = "day" placeholder="일">
             <input type="text" name="time" placeholder="시간">
-            <input type="text" name="weather" placeholder="날씨">
             <button type="button" onclick="submitForecastForm()">예측 진행</button>
         </form>
 

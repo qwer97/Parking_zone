@@ -22,13 +22,19 @@ public class ForecastTest {
 
 
 
+
     @Test
     public void forecast(){
-        String time ="15:12";
+        int year =2023;
+        int month =12;
+        int day = 2;
+        int time =9;
         String weather ="흐림";
 
-        fc.showForecast(time,weather);
+        System.out.println( fc.showForecast(year,month,day,time));
     }
+
+
 
     @Test
     public void justtest(){
