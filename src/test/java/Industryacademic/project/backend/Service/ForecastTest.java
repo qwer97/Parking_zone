@@ -35,6 +35,21 @@ public class ForecastTest {
     }
 
 
+    @Test
+    public void qtest(){
+        int year =2023;
+        int month =12;
+        int day =9;
+
+        String result[] = fc.forecastall(year,month,day);
+
+        for(int i=0;i<14;i++){
+            System.out.println(result[i]);
+        }
+
+    }
+
+
 
     @Test
     public void justtest(){

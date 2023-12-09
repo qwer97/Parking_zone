@@ -8,7 +8,8 @@
 <h1>Forecast Result</h1>
 <p th:text="${message}"></p>
 <p>
-    예측량: <span th:text="${usagePrediction}"></span>
+    예측량:
+    <span th:each="result : ${usagePrediction}" th:text="${result}"></span>
 </p>
 </body>
 </html>

@@ -71,25 +71,15 @@ public class BasicController {
     }
 
     @PostMapping("/api/forecast")
-    public ModelAndView forecast(@RequestParam("year") int year,@RequestParam("month") int month , @RequestParam("day") int day, @RequestParam("time") String time) { // 코드 수정 필요
-        /*
-        LocalDateTime localDateTime = LocalDateTime.parse(time, DateTimeFormatter.ofPattern("yyyyMMdd"));
+    public ModelAndView forecast(@RequestParam("year") int year,@RequestParam("month") int month , @RequestParam("day") int day) { // 코드 수정 필요
 
-        // Extract date and time components
-        String baseDate = localDateTime.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
-        String baseTime = time;
 
-        String result = ws.getWeatherData(baseDate, baseTime, "126", "37");
-
-        int tiime =Integer.parseInt(time);
-         */
-        int tiime =Integer.parseInt(time);
-        String result2 = fs.showForecast(year,month,day,tiime);
+        String result[]= fs.forecastall(year,month,day);
 
         ModelAndView modelAndView = new ModelAndView("forecast");
         modelAndView.addObject("message", "예측량을 제공하겠습니다.");
 
-        modelAndView.addObject("usagePrediction", result2); // 실제 열과 이름 맞춰야 함
+        modelAndView.addObject("usagePrediction", result); // 실제 열과 이름 맞춰야 함
 
         return modelAndView;
     }
@@ -99,11 +89,11 @@ public class BasicController {
     @PostMapping("/api/register/member")
     public ModelAndView registerMember(@RequestParam("id") String id, @RequestParam("password") String password, @RequestParam("pno") String pno) {
 
-        rm.MEMBERRegistration(id, password, pno); // 학생 등록 로직을 호출
+        rm.MEMBERRegistration(id, password, pno);
 
         ModelAndView modelAndView = new ModelAndView("regist"); // View 이름을 설정합니다.
         modelAndView.addObject("message", "등록되었습니다."); // 메시지를 모델에 추가합니다.
-        return modelAndView; // 메인 페이지로 리디렉션하지 않고 메시지와 함께 그대로 표시됩니다.
+        return modelAndView;
     }
 
     // 자동차 등록 양식을 위한 매핑

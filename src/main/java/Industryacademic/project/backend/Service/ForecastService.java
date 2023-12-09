@@ -22,7 +22,6 @@ public class ForecastService {
         this.UP=UP;
     }
 
-
     @Transactional
     public String showForecast(int year,int month,int day,int time){//예측량 제공
 
@@ -35,7 +34,6 @@ public class ForecastService {
         LocalDate target =LocalDate.of(year,month,day);
 
         int daypass = (int)ChronoUnit.DAYS.between(start,target);
-
 
         int id =daypass*14;
         int index =0;
@@ -89,8 +87,39 @@ public class ForecastService {
             System.out.println("데이터가 없습니다.");
             return null;
         }
-
     }
+    @Transactional
+    public String[] forecastall(int year, int month, int day) {
+        LocalDate start = LocalDate.of(2023, 1, 1);
+        LocalDate target = LocalDate.of(year, month, day);
 
+        int daypass = (int) ChronoUnit.DAYS.between(start, target);
 
+        int id = daypass * 14;
+
+        String[] resultArray = new String[14];
+
+        for (int hour = 9; hour <= 22; hour++) {
+            int index = hour - 9;
+            int currentId = id + index;
+
+            UsagePrediction u = UP.findById(currentId);
+
+            if (u != null) {
+                if (u.getPrecipitationAmount() == 0.0) {
+                    resultArray[index] = "Hour " + hour + ": 원활";
+                } else if (u.getPrecipitationAmount() == 1.0) {
+                    resultArray[index] = "Hour " + hour + ": 보통";
+                } else if (u.getPrecipitationAmount() == 2.0) {
+                    resultArray[index] = "Hour " + hour + ": 혼잡";
+                } else {
+                    resultArray[index] = "Hour " + hour + ": 매우 혼잡";
+                }
+            } else {
+                System.out.println("Data not available for hour " + hour);
+            }
+        }
+
+        return resultArray;
+    }
 }

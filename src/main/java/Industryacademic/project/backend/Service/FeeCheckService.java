@@ -8,10 +8,17 @@ import Industryacademic.project.backend.repository.CARRepository;
 import Industryacademic.project.backend.repository.MEMBERRepository;
 import Industryacademic.project.backend.repository.PARKING_FEERepository;
 import Industryacademic.project.backend.repository.PARKING_LOTRepository;
+import jakarta.servlet.http.HttpSession;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class FeeCheckService {
@@ -66,3 +73,5 @@ public class FeeCheckService {
 
     }
 }
+
+
